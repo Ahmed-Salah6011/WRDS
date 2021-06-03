@@ -2,7 +2,7 @@ import cv2
 from antispoofing import SmileDetection, BlinkingCounter
 from face_comparison import FaceChecker
 import argparse
-
+import os
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-sv", "--smiling_video", required=True,help="path to smiling video")
@@ -18,25 +18,37 @@ blink_counter= BlinkingCounter(args.blinking_video)
 face_comp = FaceChecker(ref)
 
 
+def write_frames(frames,type,dir='faces/'):
+    i=0
+    for frame in frames:
+        cv2.imwrite(os.path.join(dir,'{}_{}.jpg'.format(type,i)),frame)
+        i+=1
+
 print("Checking Smiling Video!")
 res,frames= smile_detector.detect()
+
+
 if res: #detected smile
+    write_frames(frames,'smile')
+
     smile_detector.change_video_path(args.not_smiling_video)
     print("Checking Not Smiling Video!")
-    res,f = smile_detector.detect()
+    res,frames = smile_detector.detect()
+    
     
 
     if res==0: #detected not smile
-        frames.extend(f)
+        write_frames(frames,'not_smile')
+
         print("Checking Blinking Video!")
-        res,f = blink_counter.count()
+        res,frames= blink_counter.count()
+
         if res: #detects the blinking
-            frames.extend(f)
-            
+            write_frames(frames,'blink')
 
             #finally check faces
             print("Checking Faces!")
-            final_res=face_comp.check_faces(frames)
+            final_res=face_comp.check_faces(images_directory='faces/')
             if final_res:
                 print("ALL CLEAR!")
             else :

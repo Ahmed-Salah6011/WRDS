@@ -72,9 +72,10 @@ class SmileDetection(Antispoofing):
         counter=[0,0]
         while vid.isOpened():
             ret,frame= vid.read()
-            frames.append(frame)
+            
             if not ret:
                 break
+            frames.append(frame)
 
             faces= detector.detect(frame)
             if len(faces)>1 :
@@ -168,11 +169,11 @@ class BlinkingCounter(Antispoofing):
 
         while vid.isOpened():
             ret,frame= vid.read()
-            frames.append(frame)
+            
 
             if not ret:
                 break
-            
+            frames.append(frame)
             
             
             # frame = cv2.resize(frame, (450,450))

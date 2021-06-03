@@ -1,4 +1,5 @@
 import cv2
+import os
 import face_recognition
 
 
@@ -11,6 +12,18 @@ class FaceChecker():
         self.ref = cv2.cvtColor(self.ref,cv2.COLOR_BGR2RGB)
 
         self.ref_encodings= self.get_face_encodings(self.ref)
+        self.images=[]
+    
+    def upload_images_from_directory(self,directory):
+        '''
+            gets the path of directory in which imagaes of faces are saved
+            and loads them in self.images
+        '''
+        files= os.listdir(directory)
+        for file in files:
+            img = cv2.imread(os.path.join(directory,file))
+            self.images.append(img)
+
     
     def get_face_encodings(self,image):
         '''
@@ -38,17 +51,19 @@ class FaceChecker():
 
         self.ref_encodings= self.get_face_encodings(self.ref)
     
-    def check_faces(self,images,confidence=0.75):
+    def check_faces(self,images_directory,confidence=0.75):
         '''
             input:
-                images: list of images contains faces and each one must have one face
                 confidence: probabilty of acceptance 
             output:
                 returns 1 if a percentage of hits is bigger than or equal the confidence 
                         0 otherwise
+            algorithim: check the faces in self.images
         '''
         hits=0
-        for img in images:
+        self.upload_images_from_directory(images_directory)
+        
+        for img in self.images:
             img= cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
             img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
             encodeElon= self.get_face_encodings(img)
@@ -57,7 +72,7 @@ class FaceChecker():
                 hits +=1
         
 
-        if hits/len(images) >= confidence:
+        if hits/len(self.images) >= confidence:
             return 1
         
         return 0
@@ -66,11 +81,11 @@ class FaceChecker():
 
 
 
-ref= cv2.imread('bta2a.jpg')
-face_comp = FaceChecker(ref)
+# ref= cv2.imread('bta2a.jpg')
+# face_comp = FaceChecker(ref)
 
-img = cv2.imread('org.jpg')
+# img = cv2.imread('org.jpg')
 
-print(face_comp.check_faces([img]))
+# print(face_comp.check_faces([img]))
 
 
