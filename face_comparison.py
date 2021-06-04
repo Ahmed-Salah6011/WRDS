@@ -1,7 +1,7 @@
 import cv2
 import os
 import face_recognition
-
+import numpy as np
 
 class FaceChecker():
     '''
@@ -51,6 +51,7 @@ class FaceChecker():
 
         self.ref_encodings= self.get_face_encodings(self.ref)
     
+    
     def check_faces(self,images_directory,confidence=0.75):
         '''
             input:
@@ -60,18 +61,17 @@ class FaceChecker():
                         0 otherwise
             algorithim: check the faces in self.images
         '''
-        hits=0
         self.upload_images_from_directory(images_directory)
-        
+        encs=[]
         for img in self.images:
             img= cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
             img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
             encodeElon= self.get_face_encodings(img)
-            result = face_recognition.compare_faces([encodeElon],self.ref_encodings)[0]
-            if result:
-                hits +=1
-        
+            encs.append(encodeElon)
 
+
+        results = face_recognition.compare_faces(encs,self.ref_encodings)
+        hits= np.sum(np.array(results,dtype='int'))
         if hits/len(self.images) >= confidence:
             return 1
         
