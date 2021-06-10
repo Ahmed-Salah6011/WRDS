@@ -58,10 +58,7 @@ class SmileDetection(Antispoofing):
                 also with a list of randomly chosen frames from the video
         '''
         vid = cv2.VideoCapture(self.video_path)
-        length = int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
-        l= 15 if length>=30 else length//2  
-        # print(length)
-
+         
         detector= FaceDetectorSSD()
         face_align = FaceAlignment()
         smile_cascade = cv2.CascadeClassifier(self.model_path)
@@ -95,6 +92,10 @@ class SmileDetection(Antispoofing):
 
         vid.release()
         cv2.destroyAllWindows()
+        ###
+        length = len(frames)
+        l= 15 if length>=30 else length//2 
+        ###
         smiling= counter[1]
         not_smiling= counter[0]
         samples=random.sample(frames, l)
@@ -161,8 +162,7 @@ class BlinkingCounter(Antispoofing):
 
 
         vid = cv2.VideoCapture(self.video_path)
-        length = int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
-        l= 15 if length>=30 else length//2  
+         
 
         frames=[]
 
@@ -207,6 +207,10 @@ class BlinkingCounter(Antispoofing):
 
         vid.release()
         cv2.destroyAllWindows()
+        ##
+        length = len(frames)
+        l= 15 if length>=30 else length//2 
+        ##
         samples=random.sample(frames, l)
         if TOTAL>= 5 and TOTAL<=10:
             return TOTAL,samples #all ok
