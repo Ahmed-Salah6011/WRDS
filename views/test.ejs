@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/video_record.css" />
+    <title>Image project</title>
+  </head>
+  <body style="background-color: white">
+    <div class="container whole-container" style="color: white">
+      <div class="row first-row">
+        <div class="col" style="padding: 0">
+          <h3 id="state" class="state">
+            please record a video while you are smiling
+          </h3>
+        </div>
+      </div>
+      <div class="row justify-content-center video-container">
+        <div class="col-auto">
+          <h5 style="width: fit-content; margin: auto; color: #0d6efd">
+            Your webcam
+          </h5>
+          <video
+            id="my-preview"
+            autoplay
+            style="width: 440px; border-radius: 6%"
+          ></video>
+        </div>
+        <div class="col-auto">
+          <h5 style="width: fit-content; margin: auto; color: #0d6efd">
+            Your recorded video
+          </h5>
+          <video
+            id="recorded-preview"
+            autoplay
+            style="width: 440px; border-radius: 6%"
+            poster="images/default-video.png"
+          ></video>
+        </div>
+
+        <!-- <div class="col">
+          <video src="" hidden></video>
+        </div> -->
+      </div>
+      <div class="row justify-content-between last-row">
+        <div class="col-auto">
+          <button id="btn-start-recording" class="btn btn-primary my-btn">
+            Start Recording
+          </button>
+        </div>
+        <div class="col-auto">
+          <h4 id="timer" style="color: #0d6efd">Not recording</h4>
+        </div>
+        <div class="col-auto">
+          <button
+            id="next-step-btn"
+            class="btn btn-primary my-btn"
+            onclick="window.location='/ocr';"
+            disabled
+          >
+            Next Step
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- <video id="recorded_video" src="./videos/test.mkv" hidden></video> -->
+
+    <!-- 3. Include the RecordRTC library and the latest adapter -->
+    <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/test.js"></script>
+  </body>
+</html>
