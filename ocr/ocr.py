@@ -190,7 +190,7 @@ def ocr(inp_img,out_img,out_file,status):
 				myfile.close()
 
 FRONT_ID = './sample.jpg'
-REF_FRONT = './a.jpeg'
+REF_FRONT = './atef.jpeg'
 
 BACK_ID = './hamied_ID_back.jpeg'
 REF_BACK = './ID_back_Ref.jpeg'
