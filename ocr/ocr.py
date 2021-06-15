@@ -9,7 +9,7 @@ def img_preprocess(img_path):
 	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	# blurred = cv2.GaussianBlur(gray, (11,11), 0)
 	# edged = cv2.Canny(blurred, 30, 110, 30)
-	cv2.imwrite("edged_" +img_path.split('/')[-1],gray)
+	# cv2.imwrite("edged_" +img_path.split('/')[-1],gray)
 	return gray
 	#<==========End of Blurring and Edging==============>
 
