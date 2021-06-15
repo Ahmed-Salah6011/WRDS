@@ -1,0 +1,31 @@
+.whole-container {
+  border-radius: 12px;
+  padding: 0;
+}
+
+.video-container {
+  background-color: #00bcd4;
+  margin: 0;
+  padding: 10px;
+}
+.first-row {
+  background-color: #b2ebf2;
+  padding-bottom: 5px;
+  width: inherit;
+  margin: 0;
+}
+.state {
+  width: fit-content;
+  margin: auto;
+  color: #0d6efd;
+}
+.my-btn {
+  width: fit-content;
+}
+.last-row {
+  margin: 0;
+  padding: 10px;
+  background-color: #b2ebf2;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
