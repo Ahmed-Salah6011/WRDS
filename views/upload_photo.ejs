@@ -7,16 +7,29 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <label for="image">Image Query</label>
+    <form action="/uploadfile" method="post" enctype="multipart/form-data">
+      <label>ID front image</label>
       <input
         type="file"
-        name="img"
+        name="ID_front"
         class="form-control"
-        id="image"
         accept=".jpeg,.jpg,.png"
       />
-      <button type="submit">Submit image</button>
+      <label>ID Back image</label>
+      <input
+        type="file"
+        name="ID_back"
+        class="form-control"
+        accept=".jpeg,.jpg,.png"
+      />
+      <label>Certificate image</label>
+      <input
+        type="file"
+        name="cert"
+        class="form-control"
+        accept=".jpeg,.jpg,.png"
+      />
+      <button type="submit">Submit images</button>
     </form>
   </body>
 </html>

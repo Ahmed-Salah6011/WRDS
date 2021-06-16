@@ -7,35 +7,75 @@ const FileReader = require("filereader");
 const { spawn } = require("child_process");
 const path = require("path");
 const socketio = require("socket.io");
+const { parse } = require("path");
 const server = http.createServer(app);
 const io = socketio(server);
-
+///////////////////////////////////////
 app.use(express.static("uploads"));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 const port = 4000;
 let baseDir = path.join(__dirname, "videos", "test.MKV");
-
+/////////////////////////////////////////
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "uploads"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + ".jpg");
+  },
+});
 const upload = multer({
   dest: path.join(__dirname, "uploads"),
+  storage: storage,
   // you might also want to set some limits: https://github.com/expressjs/multer#limits
 });
-
+///////////////////////////////////////
 app.get("/", (req, res) => {
+  res.render("index");
+});
+app.get("/uploadfile", (req, res) => {
   res.render("upload_photo");
 });
+var uploadMultiple = upload.fields([
+  { name: "ID_front", maxCount: 10 },
+  { name: "ID_back", maxCount: 10 },
+  { name: "cert", maxCount: 10 },
+]);
 
+app.post("/uploadfile", uploadMultiple, function (req, res, next) {
+  if (req.files) {
+    console.log(req.files);
+    console.log("files uploaded");
+    res.send("files uploaded");
+  }
+  const python = spawn("python", ["ocr.py"]);
+  res.redirect("/video");
+});
+
+app.get("/ocr", (req, res) => {
+  let rawdata = fs.readFileSync("student.json");
+  let cert_data = parse(rawdata);
+  res.render("ocr", { cert: cert_data });
+});
+
+app.get("/video", (req, res) => {
+  res.render("video_record");
+});
+////////////////////////////////////
 app.post("/upload", upload.single("img"), (req, res) => {
   const tempPath = req.file.path;
   const targetPath = path.join(__dirname, "./uploads/image.jpg");
   fs.rename(tempPath, targetPath, (err) => {
     if (err) console.log(err);
-    res.render("test");
+    res.render("video_record");
   });
 });
+//////////////////////////////////
 server.listen(port, () => {
   console.log("listening on http://localhost:4000/");
 });
+///////////////////////////////////
 io.on("connection", (socket) => {
   socket.on("blob", (data) => {
     let blob = data.blobData;

@@ -13,7 +13,8 @@ const state1_refused =
     "video refused, please record the video while you are NOT smiling again",
   state3_request = "please record a video while you are blinking",
   state3_refused =
-    "video refused, please record the video while you are blinking again";
+    "video refused, please record the video while you are blinking again",
+  welldone_message = "please proceed to the next step";
 // const recorded_video = document.querySelector("recorded_video");
 let state = 1;
 navigator.mediaDevices
@@ -45,21 +46,28 @@ navigator.mediaDevices
       if (data == "accepted") {
         if (state == 1) {
           state_text.innerText = state2_request;
+          alert(state2_request);
         } else if (state == 2) {
           state_text.innerText = state3_request;
+          alert(state3_request);
         }
         state++;
         if (state == 4) {
           start_button.disabled = true;
+          state_text.innerText = welldone_message;
+          alert(welldone_message);
           next_step_button.disabled = false;
         }
       } else {
         if (state == 1) {
           state_text.innerText = state1_refused;
+          alert(state1_refused);
         } else if (state == 2) {
           state_text.innerText = state2_refused;
+          alert(state2_refused);
         } else if (state == 3) {
           state_text.innerText = state3_refused;
+          alert(state3_refused);
         }
       }
       timer_container.innerText = "Not Recording";

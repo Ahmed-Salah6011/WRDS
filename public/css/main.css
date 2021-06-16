@@ -1,0 +1,82 @@
+body {
+  background-image: url("../images/10.jpg");
+}
+.but1 {
+  font-size: 40px;
+  /* justify-content: center;*/
+  margin-top: 200px;
+  margin-left: 130px;
+  border-radius: 30%;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(29, 211, 253, 0.3648809865743172) 50%
+  );
+}
+.par1 {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bolder;
+  text-align: center;
+}
+.but2 {
+  font-size: 40px;
+  margin-left: 700px;
+  border-radius: 20%;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(29, 211, 253, 0.3648809865743172) 50%
+  );
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(29, 211, 253, 0.3648809865743172) 50%
+  );
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  color: cadetblue;
+}
+
+.mhead {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(29, 211, 253, 0.3648809865743172) 50%
+  );
+}
+.b3 {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(29, 211, 253, 0.3648809865743172) 50%
+  );
+  color: black;
+  font-size: 20px;
+  margin: auto;
+}

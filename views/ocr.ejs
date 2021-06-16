@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/video_record.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container p-5" style="background-color: #b2ebf2">
+      <p class="h1">Check your information</p>
+      <form action="/ocr" method="POST">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">name</span>
+          <input
+            type="text"
+            class="form-control"
+            value="الاسم"
+            aria-label="your name"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2">address</span>
+          <input
+            type="text"
+            class="form-control"
+            value="العنوان"
+            aria-label="address"
+            aria-describedby="basic-addon2"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">id</span>
+          <input
+            type="text"
+            class="form-control"
+            id="basic-url"
+            aria-describedby="basic-addon3"
+            value="الرقم القومي"
+          />
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">gender</span>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="gender"
+            value="النوع"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Marital status</span>
+          <input
+            type="text"
+            class="form-control"
+            value="الحالة الاجتماعية"
+            aria-label="Marital status"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">grade</span>
+          <input
+            type="text"
+            class="form-control"
+            value="الدرجة"
+            aria-label="grade"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">educational administration</span>
+          <input
+            type="text"
+            class="form-control"
+            value="الادارة التعليمية"
+            aria-label="educational administration"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

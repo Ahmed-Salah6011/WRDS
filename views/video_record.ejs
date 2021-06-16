@@ -24,24 +24,10 @@
       </div>
       <div class="row justify-content-center video-container">
         <div class="col-auto">
-          <h5 style="width: fit-content; margin: auto; color: #0d6efd">
-            Your webcam
-          </h5>
           <video
             id="my-preview"
             autoplay
             style="width: 440px; border-radius: 6%"
-          ></video>
-        </div>
-        <div class="col-auto">
-          <h5 style="width: fit-content; margin: auto; color: #0d6efd">
-            Your recorded video
-          </h5>
-          <video
-            id="recorded-preview"
-            autoplay
-            style="width: 440px; border-radius: 6%"
-            poster="images/default-video.png"
           ></video>
         </div>
 
@@ -76,6 +62,6 @@
     <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="js/test.js"></script>
+    <script src="js/video_record.js"></script>
   </body>
 </html>
