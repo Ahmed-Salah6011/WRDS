@@ -1,8 +1,6 @@
-from os import name
-from ArabicOcr import arabicocr
 import cv2
-import numpy as np
-import re
+import NatinalID
+
 	#<==========Start of Blurring and Edging==============>
 def img_preprocess(img_path):
 	image = cv2.imread(img_path)
@@ -142,80 +140,84 @@ def crop(ref_img, img,min):
 
 	#<==========End SIFT Method============>
 	#<==========Start Main============>
-def front_id(inp_img,ref_img):
-	ref_nid_img= img_preprocess(ref_img)
-	img= img_preprocess(inp_img)
-	nid_img= crop(ref_nid_img,img,1)
-	nid_img = cv2.GaussianBlur(nid_img, (7,7), 0)
-	nid_img = cv2.Canny(nid_img, 30, 110, 30)
-	cv2.imwrite('out/front.jpeg',nid_img)
-	return 'out/front.jpeg'
+# def front_id(inp_img,ref_img):
+# 	ref_nid_img= img_preprocess(ref_img)
+# 	img= img_preprocess(inp_img)
+# 	nid_img= crop(ref_nid_img,img,1)
+# 	nid_img = cv2.GaussianBlur(nid_img, (7,7), 0)
+# 	nid_img = cv2.Canny(nid_img, 30, 110, 30)
+# 	cv2.imwrite('out/front.jpeg',nid_img)
+# 	return 'out/front.jpeg'
 
-def back_id(inp_img,ref_img):
-	ref_nid_img= img_preprocess(ref_img)
-	img= img_preprocess(inp_img)
-	nid_img= crop(ref_nid_img,img,1)
-	nid_img = cv2.GaussianBlur(nid_img, (7,7), 0)
-	nid_img = cv2.Canny(nid_img, 30, 110, 30)
-	cv2.imwrite('out/back.jpeg',nid_img)
-	return 'out/back.jpeg'
+# def back_id(inp_img,ref_img):
+# 	ref_nid_img= img_preprocess(ref_img)
+# 	img= img_preprocess(inp_img)
+# 	nid_img= crop(ref_nid_img,img,1)
+# 	nid_img = cv2.GaussianBlur(nid_img, (7,7), 0)
+# 	nid_img = cv2.Canny(nid_img, 30, 110, 30)
+# 	cv2.imwrite('out/back.jpeg',nid_img)
+# 	return 'out/back.jpeg'
 
-def ocr(inp_img,out_img,out_file,status):
-	with open (out_file,'w',encoding='utf-8')as myfile:
-			words=arabicocr.arabic_ocr(inp_img,out_img)
-			if status == 'back':
-				words = [ word for word in words if word in ['انثى','ذكر','أنثى','مسلم','مسيحى','طالب','دكر']]
-				for word in words:
-						myfile.write(word + "\n")
-				myfile.close()
-			elif status == 'front':
-				print(words)
-				for word in words:
-					id   = re.match('^[\u0660-\u0669]+$',word.replace(' ',''))
-					text   = re.match('^[\u0621-\u064A\u0660-\u0669]+$',word.replace(' ',''))
-					if id:
-						myfile.write('ID: '+id.string+ "\n")
-					if text and id:
-						if text.string != id.string:
-							myfile.write('Applicant: '+text.string+ "\n")
-			elif status == 'top':
-				# print(words)
-				for word in words:
-					id   = re.match('^[\u0660-\u0669]+$',word[1].replace(' ',''))
-					if id:
-						myfile.write('ID: '+id.string+ "\n")
-					else:
-						myfile.write('Applicant: '+word[1] + "\n")
+# def ocr(inp_img,out_img,out_file,status):
+# 	with open (out_file,'w',encoding='utf-8')as myfile:
+# 			words=arabicocr.arabic_ocr(inp_img,out_img)
+# 			if status == 'back':
+# 				words = [ word for word in words if word in ['انثى','ذكر','أنثى','مسلم','مسيحى','طالب','دكر']]
+# 				for word in words:
+# 						myfile.write(word + "\n")
+# 				myfile.close()
+# 			elif status == 'front':
+# 				print(words)
+# 				for word in words:
+# 					id   = re.match('^[\u0660-\u0669]+$',word.replace(' ',''))
+# 					text   = re.match('^[\u0621-\u064A]+$',word.replace(' ',''))
+# 					if id:
+# 						myfile.write('ID: '+id.string+ "\n")
+# 					if text and id:
+# 						if text.string != id.string:
+# 							myfile.write('Applicant: '+text.string+ "\n")
+# 			elif status == 'top':
+# 				# print(words)
+# 				for word in words:
+# 					id   = re.match('^[\u0660-\u0669]+$',word[1].replace(' ',''))
+# 					if id:
+# 						myfile.write('ID: '+id.string+ "\n")
+# 					else:
+# 						myfile.write('Applicant: '+word[1] + "\n")
 				
-				myfile.close()
+# 				myfile.close()
 
-FRONT_ID = './sample.jpg'
-REF_FRONT = './atef.jpeg'
+# FRONT_ID = './sample.jpg'
+# REF_FRONT = './atef.jpeg'
 
-BACK_ID = './hamied_ID_back.jpeg'
-REF_BACK = './ID_back_Ref.jpeg'
+# BACK_ID = './hamied_ID_back.jpeg'
+# REF_BACK = './ID_back_Ref.jpeg'
 
-FRONT_OUT = './front.txt'
-BACK_OUT = './back.txt'
+# FRONT_OUT = './front.txt'
+# BACK_OUT = './back.txt'
 
-CER = './cert.jpg'
-REF_TOP_CER = './cert_top_ref.jpg'
-REF_BOTTOM_CER = './cert_bottom_ref.jpg'
+# CER = './cert.jpg'
+# REF_TOP_CER = './cert_top_ref.jpg'
+# REF_BOTTOM_CER = './cert_bottom_ref.jpg'
 
-TOP_OUT = './top.txt'
-BOTTOM_OUT = './bottom.txt'
-
-##CERT
-ocr(front_id(CER,REF_TOP_CER),'ocr.jpeg',TOP_OUT,'top')
-ocr(front_id(CER,REF_BOTTOM_CER),'ocr.jpeg',BOTTOM_OUT,'top')
-
-#ID
-ocr(front_id(FRONT_ID,REF_FRONT),'ocr.jpeg',FRONT_OUT,'top')
-
-ocr(back_id(BACK_ID,REF_BACK),'ocr.jpeg',BACK_OUT,'back')
-
-# inp_img = './sample.jpg'
-# ref_img = './atef.jpeg'
-# front_id(inp_img,ref_img)
+# TOP_OUT = './top.txt'
+# BOTTOM_OUT = './bottom.txt'
+inp_img = cv2.imread('cert.jpg')
+grade = NatinalID.CERTScanner_bottom(inp_img)
+with open('top.txt','w',encoding='utf-8') as file:
+	for k,v in NatinalID.CERTScanner_top(inp_img).items():
+		file.write(k + ' ' + v+'\n')
+	file.write('المجموع' + ' ' + grade['المجموع'])
+	file.close()
+inp_img = cv2.imread('Salah.jpg')
+with open('front.txt','w',encoding='utf-8') as file:
+	for k,v in NatinalID.IDScanner(inp_img).items():
+		file.write(k + ' ' + v+'\n')
+	file.close()
+inp_img = cv2.imread('Back.jpg')
+with open('back.txt','w',encoding='utf-8') as file:
+	for k,v in NatinalID.IDScanner_back(inp_img).items():
+		file.write(k + ' ' + v+'\n')
+	file.close()
 	#<==========End Main============>
 

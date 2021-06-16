@@ -1,0 +1,3 @@
+Gender ذكر
+Job طالب
+Religion مسلم
