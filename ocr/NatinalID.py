@@ -1,6 +1,3 @@
-from re import S
-
-from cv2 import data
 from imports_helperfunctions.ImportLib import *
 from imports_helperfunctions.HelperFunc import *
 from IDNumberParser import *
@@ -177,7 +174,6 @@ def CERTCutter_bottom(InputImage):
     Edged_Gray = cv2.cvtColor(Gaussian, cv2.COLOR_BGR2GRAY)
     Edged_Gray = cv2.fastNlMeansDenoising(Edged_Gray,10,10,7,21) 
     Edged_Gray = cv2.filter2D(Edged_Gray, -1, Kernel_sharpen)
-    print(Edged_Gray.shape)
     Name1   = Edged_Gray[600:,:]
 
     _,Name1 = cv2.threshold(Name1,180,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
@@ -440,7 +436,6 @@ def CERTScanner_bottom(InputImage):
 def IDScanner_back(InputImage):
     Name1 = IDCutter_back(InputImage)
     status = [word for word in IDParser_back(Name1) if word in ['انثى','ذكر','أنثى','مسلم','مسيحى','طالب','دكر']]
-    print(IDParser_back(Name1))
     data={
         
         "Gender":status[1],
@@ -453,7 +448,6 @@ def CERTScanner_top(InputImage):
     Name1 = CERTCutter_top(InputImage)
     status = CERTParser_top(Name1) 
     data = {}
-    print(status)
     for i in range(len(status)):
         if status[i] == 'اسم' and status[i+1] == 'الطالب':
             data[status[i] + ' '+status[i+1]] = " ".join(status[i+2:status.index('المديرية')])
