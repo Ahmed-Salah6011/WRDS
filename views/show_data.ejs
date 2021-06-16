@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/video_record.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container p-5" style="background-color: #b2ebf2">
+      <p class="h1">Check your information</p>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">name</span>
+        <input
+          disabled
+          type="text"
+          class="form-control"
+          name="name"
+          value="<%= data.name %>"
+          aria-label="your name"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon2">address</span>
+        <input
+          disabled
+          type="text"
+          name="address"
+          class="form-control"
+          value="<%= data.address %>"
+          aria-label="address"
+          aria-describedby="basic-addon2"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3">id</span>
+        <input
+          disabled
+          type="text"
+          name="id"
+          class="form-control"
+          id="basic-url"
+          aria-describedby="basic-addon3"
+          value="<%= data.id %>"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">gender</span>
+        <input
+          disabled
+          type="text"
+          name="gender"
+          class="form-control"
+          aria-label="gender"
+          value="<%= data.gender %>"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Religion</span>
+        <input
+          disabled
+          type="text"
+          name="religion"
+          class="form-control"
+          value="<%= data.religion %>"
+          aria-label="Religion"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">grade</span>
+        <input
+          disabled
+          type="text"
+          name="grade"
+          class="form-control"
+          value="<%= data.grade %>"
+          aria-label="grade"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">administration</span>
+        <input
+          disabled
+          type="text"
+          name="administration"
+          class="form-control"
+          value="<%= data.administration %>"
+          aria-label="administration"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">first foreign language</span>
+        <input
+          disabled
+          type="text"
+          name="first_foreign_language"
+          class="form-control"
+          value="<%= data.first_foreign_language %>"
+          aria-label="first foreign language"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">second foreign language</span>
+        <input
+          disabled
+          type="text"
+          name="second_foreign_language"
+          class="form-control"
+          value="<%= data.second_foreign_language %>"
+          aria-label="second foreign language"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">school</span>
+        <input
+          disabled
+          type="text"
+          name="school"
+          class="form-control"
+          value="<%= data.school %>"
+          aria-label="school"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">educational administration</span>
+        <input
+          disabled
+          type="text"
+          name="educational_administration"
+          class="form-control"
+          value="<%= data.educational_administration %>"
+          aria-label="educational administration"
+        />
+      </div>
+    </div>
+  </body>
+</html>

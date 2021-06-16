@@ -22,6 +22,7 @@
           <input
             type="text"
             class="form-control"
+            name="name"
             value="<%= id.Name %>"
             aria-label="your name"
             aria-describedby="basic-addon1"
@@ -32,8 +33,9 @@
           <span class="input-group-text" id="basic-addon2">address</span>
           <input
             type="text"
+            name="address"
             class="form-control"
-            value="العنوان"
+            value="<%= id.Address %>"
             aria-label="address"
             aria-describedby="basic-addon2"
           />
@@ -43,29 +45,32 @@
           <span class="input-group-text" id="basic-addon3">id</span>
           <input
             type="text"
+            name="id"
             class="form-control"
             id="basic-url"
             aria-describedby="basic-addon3"
-            value="الرقم القومي"
+            value="<%= id.ID %>"
           />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text">gender</span>
           <input
             type="text"
+            name="gender"
             class="form-control"
             aria-label="gender"
-            value="النوع"
+            value="<%= id.Gender %>"
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text">Marital status</span>
+          <span class="input-group-text">Religion</span>
           <input
             type="text"
+            name="religion"
             class="form-control"
-            value="الحالة الاجتماعية"
-            aria-label="Marital status"
+            value="<%= id.Religion %>"
+            aria-label="Religion"
           />
         </div>
 
@@ -73,9 +78,54 @@
           <span class="input-group-text">grade</span>
           <input
             type="text"
+            name="grade"
             class="form-control"
-            value="الدرجة"
+            value='<%= cert["المجموع"]%>'
             aria-label="grade"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">administration</span>
+          <input
+            type="text"
+            name="administration"
+            class="form-control"
+            value='<%= cert["المديرية"]%>'
+            aria-label="administration"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">first foreign language</span>
+          <input
+            type="text"
+            name="first_foreign_language"
+            class="form-control"
+            value='<%= cert["اللغة الأولى"]%>'
+            aria-label="first foreign language"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">second foreign language</span>
+          <input
+            type="text"
+            name="second_foreign_language"
+            class="form-control"
+            value='<%= cert["اللغة الثانية"]%>'
+            aria-label="second foreign language"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">school</span>
+          <input
+            type="text"
+            name="school"
+            class="form-control"
+            value='<%= cert["المدرسة"]%>'
+            aria-label="school"
           />
         </div>
 
@@ -83,8 +133,9 @@
           <span class="input-group-text">educational administration</span>
           <input
             type="text"
+            name="educational_administration"
             class="form-control"
-            value="الادارة التعليمية"
+            value='<%= cert["الإدارة التعليمية"]%>'
             aria-label="educational administration"
           />
         </div>
