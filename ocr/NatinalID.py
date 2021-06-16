@@ -1,7 +1,6 @@
 from imports_helperfunctions.ImportLib import *
 from imports_helperfunctions.HelperFunc import *
 from IDNumberParser import *
-
 def CERTMatcher_bottom(InputImage):
 
     MIN_MATCH_COUNT=2
@@ -9,7 +8,7 @@ def CERTMatcher_bottom(InputImage):
     FLANN_INDEX_KDITREE=0
     flannParam=dict(algorithm=FLANN_INDEX_KDITREE,tree=5)
     flann=cv2.FlannBasedMatcher(flannParam,{})
-    trainImg = cv2.imread('./cert_bottom_ref.jpg',0)
+    trainImg = cv2.imread('ocr/cert_bottom_ref.jpg',0)
     trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
     QueryImgBGR = InputImage
     QueryImg=cv2.cvtColor(QueryImgBGR,cv2.COLOR_BGR2GRAY)
@@ -49,7 +48,7 @@ def CERTMatcher_top(InputImage):
     flannParam=dict(algorithm=FLANN_INDEX_KDITREE,tree=5)
     flann=cv2.FlannBasedMatcher(flannParam,{})
 
-    trainImg = cv2.imread('./cert_top_ref.jpg',0)
+    trainImg = cv2.imread('ocr/cert_top_ref.jpg',0)
     trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
     QueryImgBGR = InputImage
@@ -91,7 +90,7 @@ def IDMatcher_back(InputImage):
     flannParam=dict(algorithm=FLANN_INDEX_KDITREE,tree=5)
     flann=cv2.FlannBasedMatcher(flannParam,{})
 
-    trainImg = cv2.imread('./ID_back_Ref.jpeg',0)
+    trainImg = cv2.imread('ocr/ID_back_Ref.jpeg',0)
     trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
     QueryImgBGR = InputImage
@@ -132,7 +131,7 @@ def IDMatcher(InputImage):
     flannParam=dict(algorithm=FLANN_INDEX_KDITREE,tree=5)
     flann=cv2.FlannBasedMatcher(flannParam,{})
 
-    trainImg = cv2.imread('./atef.jpeg',0)
+    trainImg = cv2.imread('ocr/atef.jpeg',0)
     trainKP,trainDesc=detector.detectAndCompute(trainImg,None)
 
     QueryImgBGR = InputImage

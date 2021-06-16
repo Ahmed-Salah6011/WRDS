@@ -47,16 +47,24 @@ app.post("/uploadfile", uploadMultiple, function (req, res, next) {
   if (req.files) {
     console.log(req.files);
     console.log("files uploaded");
-    res.send("files uploaded");
   }
-  const python = spawn("python", ["ocr.py"]);
+  const python = spawn("python", ["ocr/ocr.py"]);
+  python.stdout.on("data", (data) => {
+    dataFromPython = data.toString();
+    console.log(dataFromPython);
+  });
   res.redirect("/video");
 });
 
 app.get("/ocr", (req, res) => {
-  let rawdata = fs.readFileSync("student.json");
-  let cert_data = parse(rawdata);
-  res.render("ocr", { cert: cert_data });
+  let raw_id = fs.readFileSync("ID.json",encoding="utf-8");
+  let raw_cert = fs.readFileSync("CERT.json",encoding="utf-8");
+  let id_data = parse(raw_id);
+  let cert_data = parse(raw_cert);
+   console.log(id_data)
+   console.log(cert_data)
+  res.render("ocr", { 'cert': cert_data,'id':id_data });
+   
 });
 
 app.get("/video", (req, res) => {
