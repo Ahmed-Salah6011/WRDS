@@ -14,27 +14,33 @@ def write_frames(frames,type,dir='faces/'):
 if(sys.argv[1]=="1"):
     smile = SmileDetection("videos/test.MKV")
     res, frames = smile.detect()
-    if(res):
+    if(res ==1):
         write_frames(frames,"smile","random_images/")
         print(1)
+    elif res==-1:
+        print(-1)
     else:
         print(0)
 
 elif(sys.argv[1]=="2"):
     smile = SmileDetection("videos/test.MKV")
     res, frames = smile.detect()
-    if not (res):
+    if (res ==0):
         write_frames(frames,"not_smile","random_images/")
         print(1)
+    elif res==-1:
+        print(-1)
     else:
         print(0)
 
 elif(sys.argv[1]=="3"):
     blink = BlinkingCounter("videos/test.MKV")
     res, frames = blink.count()
-    if(res):
+    if(res ==1):
         write_frames(frames,"blink","random_images/")
         print(1)
+    elif res==-1:
+        print(-1)
     else:
         print(0)
 
