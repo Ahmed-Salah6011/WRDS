@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import os
 from antispoofing import SmileDetection,BlinkingCounter
+from face_comparison import FaceChecker
 
 def write_frames(frames,type,dir='faces/'):
     i=0
