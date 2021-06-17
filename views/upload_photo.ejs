@@ -44,5 +44,20 @@
         </button>
       </form>
     </div>
+    <script>
+      let files = document.querySelectorAll("input");
+      let btn = document.querySelector("button");
+      btn.disabled = true;
+      files.forEach((file) => {
+        file.addEventListener("change", () => {
+          btn.disabled = false;
+          files.forEach((file) => {
+            if (file.files.length == 0) {
+              btn.disabled = true;
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

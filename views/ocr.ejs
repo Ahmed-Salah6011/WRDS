@@ -142,5 +142,25 @@
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
       </form>
     </div>
+    <script>
+      let inputs = document.querySelectorAll("input");
+      let btn = document.querySelector("button");
+      btn.disabled = false;
+      inputs.forEach((input) => {
+        if (input.value == "") {
+          btn.disabled = true;
+        }
+      });
+      inputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          btn.disabled = false;
+          inputs.forEach((input) => {
+            if (input.value == "") {
+              btn.disabled = true;
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

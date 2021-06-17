@@ -112,6 +112,7 @@ app.post("/ocr", (req, res) => {
         obj = {
           table: [],
         };
+        req.body["accepted"] = "under evaluation";
         console.log(req.body);
         obj.table.push(req.body);
         let json = JSON.stringify(obj); //convert it to json
