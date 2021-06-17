@@ -58,6 +58,10 @@ navigator.mediaDevices
           alert(welldone_message);
           next_step_button.disabled = false;
         }
+      } else if (data == "error") {
+        alert(
+          "your face must be visible during the record, only one face should be visible"
+        );
       } else {
         if (state == 1) {
           state_text.innerText = state1_refused;

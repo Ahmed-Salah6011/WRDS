@@ -85,7 +85,12 @@ app.get("/ocr", (req, res) => {
       let cert_data = JSON.parse(raw_cert);
       res.render("ocr", { cert: cert_data, id: id_data });
     } else if (dataFromPython.trim() == "0") {
-      res.render("error");
+      res.render("error", { error: "face comparison failed" });
+    } else if (dataFromPython.trim() == "-1") {
+      res.render("error", {
+        error:
+          "your face must be visible during the record, only one face should be visible",
+      });
     }
   });
 });
@@ -167,6 +172,7 @@ io.on("connection", (socket) => {
           dataFromPython = data.toString();
           console.log(dataFromPython);
           if (dataFromPython.trim() === "1") socket.emit("state", "accepted");
+          else if (dataFromPython.trim() == "-1") socket.emit("state", "error");
           else socket.emit("state", "refused");
         });
       });
