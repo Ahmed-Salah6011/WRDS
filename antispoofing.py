@@ -75,8 +75,12 @@ class SmileDetection(Antispoofing):
             frames.append(frame)
 
             faces= detector.detect(frame)
-            if len(faces)>1 :
-                raise Exception("Video should contain one person only!")
+            try:
+                if len(faces) !=1 :
+                    raise RuntimeError("Video should contain one person only!")
+            except RuntimeError:
+                print("-1")
+                return None,[]
             
             face= faces[0]
 
@@ -182,9 +186,12 @@ class BlinkingCounter(Antispoofing):
             rects = detector(gray, 0)
             if len(rects)==0:
                 continue
-
-            if len(rects)>1 :
-                raise Exception("Video should contain one person only!")
+            try:
+                if len(rects)>1 :
+                    raise RuntimeError("Video should contain one person only!")
+            except RuntimeError:
+                print("-1")
+                return None,[]
 
             rect=rects[0]
             shape = predictor(gray, rect)
