@@ -74,11 +74,20 @@ app.post("/uploadfile", uploadMultiple, function (req, res, next) {
 });
 
 app.get("/ocr", (req, res) => {
-  let raw_id = fs.readFileSync("ID.json", (encoding = "utf-8"));
-  let raw_cert = fs.readFileSync("CERT.json", (encoding = "utf-8"));
-  let id_data = JSON.parse(raw_id);
-  let cert_data = JSON.parse(raw_cert);
-  res.render("ocr", { cert: cert_data, id: id_data });
+  const python = spawn("python", ["main_anti.py", 4]);
+  python.stdout.on("data", (data) => {
+    dataFromPython = data.toString();
+    console.log(dataFromPython);
+    if (dataFromPython.trim() == "1") {
+      let raw_id = fs.readFileSync("ID.json", (encoding = "utf-8"));
+      let raw_cert = fs.readFileSync("CERT.json", (encoding = "utf-8"));
+      let id_data = JSON.parse(raw_id);
+      let cert_data = JSON.parse(raw_cert);
+      res.render("ocr", { cert: cert_data, id: id_data });
+    } else if (dataFromPython.trim() == "0") {
+      res.render("error");
+    }
+  });
 });
 
 app.get("/video", (req, res) => {
