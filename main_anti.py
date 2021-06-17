@@ -36,7 +36,7 @@ elif(sys.argv[1]=="2"):
 elif(sys.argv[1]=="3"):
     blink = BlinkingCounter("videos/test.MKV")
     res, frames = blink.count()
-    if(res ==1):
+    if(res >= 5 and res <=10):
         write_frames(frames,"blink","random_images/")
         print(1)
     elif res==-1:
