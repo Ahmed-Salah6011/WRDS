@@ -187,7 +187,7 @@ class BlinkingCounter(Antispoofing):
             if len(rects)==0:
                 continue
             try:
-                if len(rects)>1 :
+                if len(rects)!=1 :
                     raise RuntimeError("Video should contain one person only!")
             except RuntimeError:
                 print("-1")
