@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import os
 from antispoofing import SmileDetection,BlinkingCounter
+from face_comparison import FaceChecker
 
 def write_frames(frames,type,dir='faces/'):
     i=0
@@ -37,3 +38,10 @@ elif(sys.argv[1]=="3"):
     else:
         print(0)
 
+elif(sys.argv[1]=="4"):
+    face_comp = FaceChecker("uploads/ID_front.jpg")
+    final_res=face_comp.check_faces(images_directory='random_images/')
+    if(final_res):
+        print(1)
+    else:
+        print(0)
