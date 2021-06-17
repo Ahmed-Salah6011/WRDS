@@ -72,7 +72,7 @@ class FaceChecker():
             img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
             encodeElon,ret= self.get_face_encodings(img)
             if ret == -1:
-                print("-1")
+                print(-1)
                 break
             encs.append(encodeElon)
 
