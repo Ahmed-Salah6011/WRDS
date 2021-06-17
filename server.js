@@ -116,14 +116,14 @@ app.post("/ocr", (req, res) => {
         obj.table.push(req.body);
         let json = JSON.stringify(obj); //convert it to json
         fs.writeFile("db.json", json, "utf8", () => {
-          res.send("done");
+          res.render("done");
         }); // write it
       } else {
         obj = JSON.parse(data); //now it an object
         obj.table.push(req.body); //add some data
         let json = JSON.stringify(obj); //convert it back to json
         fs.writeFile("db.json", json, "utf8", () => {
-          res.send("done");
+          res.render("done");
         }); // write it back
       }
     } else {
