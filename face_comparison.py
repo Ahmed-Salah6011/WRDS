@@ -34,13 +34,17 @@ class FaceChecker():
             constrains:
                 if there is more than on face in the image raise an error
         '''
-        faceLoc = face_recognition.face_locations(image)
-        if len(faceLoc) >1:
-            raise Exception("Video should contain one person only!")
+        try:
+            faceLoc = face_recognition.face_locations(image)
+            if len(faceLoc) != 1:
+                raise RuntimeError("Video should contain one person only!")
 
-        encodeElon = face_recognition.face_encodings(image)[0] 
+            encodeElon = face_recognition.face_encodings(image)[0] 
 
-        return encodeElon
+            return encodeElon,1
+        except RuntimeError:
+            return [-1],-1
+            
     
     def change_ref(self,image):
         '''
@@ -66,14 +70,17 @@ class FaceChecker():
         for img in self.images:
             img= cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
             img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
-            encodeElon= self.get_face_encodings(img)
+            encodeElon,ret= self.get_face_encodings(img)
+            if ret == -1:
+                print("-1")
+                break
             encs.append(encodeElon)
 
-
-        results = face_recognition.compare_faces(encs,self.ref_encodings)
-        hits= np.sum(np.array(results,dtype='int'))
-        if hits/len(self.images) >= confidence:
-            return 1
+        if ret != -1:
+            results = face_recognition.compare_faces(encs,self.ref_encodings)
+            hits= np.sum(np.array(results,dtype='int'))
+            if hits/len(self.images) >= confidence:
+                return 1
         
         return 0
 
