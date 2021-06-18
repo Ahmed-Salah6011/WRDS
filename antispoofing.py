@@ -98,7 +98,7 @@ class SmileDetection(Antispoofing):
         cv2.destroyAllWindows()
         ###
         length = len(frames)
-        l= 15 if length>=30 else length//2 
+        l= 6 if length>=12 else length//2 
         ###
         smiling= counter[1]
         not_smiling= counter[0]
@@ -216,7 +216,7 @@ class BlinkingCounter(Antispoofing):
         cv2.destroyAllWindows()
         ##
         length = len(frames)
-        l= 15 if length>=30 else length//2 
+        l= 6 if length>=12 else length//2 
         ##
         samples=random.sample(frames, l)
         if TOTAL>= 5 and TOTAL<=10:
