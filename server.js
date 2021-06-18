@@ -47,18 +47,23 @@ const upload = multer({
   storage: storage,
   // you might also want to set some limits: https://github.com/expressjs/multer#limits
 });
-///////////////////////////////////////
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.get("/uploadfile", (req, res) => {
-  res.render("upload_photo");
-});
 var uploadMultiple = upload.fields([
   { name: "ID_front", maxCount: 10 },
   { name: "ID_back", maxCount: 10 },
   { name: "cert", maxCount: 10 },
 ]);
+///////////////////////////////////////
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.post("/uploadpage", (req, res) => {
+  if (req.body.type == "college") {
+    res.render("upload_photo");
+  } else {
+    res.render("error", { error: "Not Added Yet" });
+  }
+});
 
 app.post("/uploadfile", uploadMultiple, function (req, res, next) {
   if (req.files) {
