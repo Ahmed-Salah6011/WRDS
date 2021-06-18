@@ -264,7 +264,7 @@ def IDCutter_back(InputImage):
     Edged_Gray = cv2.fastNlMeansDenoising(Edged_Gray,10,10,7,21) 
     Edged_Gray = cv2.filter2D(Edged_Gray, -1, Kernel_sharpen)
 
-    Name1   = Edged_Gray[100:405,0:1450]
+    Name1   = Edged_Gray[120:405,0:1450]
     _,Name1 = cv2.threshold(Name1,160,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     Name1 = cv2.filter2D(Name1, -1, Kernel_sharpen)
     Name1   = cv2.erode(Name1,Kernel_Vertical,iterations=1)
@@ -406,7 +406,7 @@ def IDParser_back(Name1):
     Name1_Text = re.sub(r'[\u0660-\u0669]+', '', Name1_Text)
     Name1_Text = re.sub(r'[0-9]+', '', Name1_Text)
 
-    # Name1_Text = Name1_Text.replace(' ', '')
+    Name1_Text = Name1_Text.replace(' ', '')
     Name1_Text = " ".join(Name1_Text.split())
     #print(Name1_Text)
 
@@ -441,6 +441,7 @@ def IDScanner_back(InputImage):
     Name1 = IDCutter_back(InputImage)
     status = [word for word in IDParser_back(Name1) if word in ['انثى','ذكر','أنثى','مسلم','مسيحى','طالب','دكر']]
     data = ""
+    print(status)
     if len(status) >= 3:
         
         data={
