@@ -82,7 +82,9 @@ class FaceChecker():
             if hits/len(self.images) >= confidence:
                 return 1
         
-        return 0
+            return 0
+        else:
+            return -1
 
 
 
