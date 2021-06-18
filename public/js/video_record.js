@@ -60,7 +60,7 @@ navigator.mediaDevices
         }
       } else if (data == "error") {
         alert(
-          "your face must be visible during the Record, only one face should be visible"
+          "Your Face Must Be Visible During The Record, Only One Face Should Be Visible"
         );
       } else {
         if (state == 1) {
@@ -87,11 +87,11 @@ navigator.mediaDevices
   });
 function start_timer(i) {
   let time = i;
-  let timer = `Record ends in: 00:${time}`;
+  let timer = `Record Ends In: 00:${time}`;
   timer_container.innerText = timer;
   let count = () => {
     time--;
-    timer = `Record ends in: 00:${time}`;
+    timer = `Record Ends In: 00:${time}`;
     timer_container.innerText = timer;
     console.log(time);
     if (time == 0) {
