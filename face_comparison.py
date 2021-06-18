@@ -11,7 +11,7 @@ class FaceChecker():
         self.ref = cv2.cvtColor(ref_image,cv2.COLOR_BGR2GRAY)
         self.ref = cv2.cvtColor(self.ref,cv2.COLOR_BGR2RGB)
 
-        self.ref_encodings= self.get_face_encodings(self.ref)
+        self.ref_encodings,_= self.get_face_encodings(self.ref)
         self.images=[]
     
     def upload_images_from_directory(self,directory):
