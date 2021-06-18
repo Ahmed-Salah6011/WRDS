@@ -4,8 +4,8 @@ body {
 .but1 {
   font-size: 40px;
   /* justify-content: center;*/
-  margin-top: 20px;
-  margin-left: 170px;
+  margin-top: 200px;
+  margin-left: 130px;
   border-radius: 17px;
   background: rgb(131, 58, 180);
   background: linear-gradient(
@@ -13,8 +13,6 @@ body {
     rgba(131, 58, 180, 1) 0%,
     rgba(29, 211, 253, 0.3648809865743172) 50%
   );
-  width: 220px;
-  height: 120px;
 }
 .par1 {
   font-size: 20px;
@@ -23,12 +21,8 @@ body {
   text-align: center;
 }
 .but2 {
-  position: absolute;
-
-  top: 210px;
-
   font-size: 40px;
-  margin-left: 650px;
+  margin-left: 700px;
   border-radius: 17px;
   background: rgb(131, 58, 180);
   background: linear-gradient(
@@ -36,8 +30,6 @@ body {
     rgba(131, 58, 180, 1) 0%,
     rgba(29, 211, 253, 0.3648809865743172) 50%
   );
-  width: 260px;
-  height: 120px;
 }
 ul {
   list-style-type: none;
@@ -87,10 +79,4 @@ li a:hover {
   color: black;
   font-size: 20px;
   margin: auto;
-}
-.par1 {
-  font-weight: bolder;
-  font-size: 45px;
-  color: white;
-  margin-left: 10px;
 }
