@@ -56,3 +56,4 @@ elif(sys.argv[1]=="4"):
 
     else:
         print(0)
+    sys.exit()
