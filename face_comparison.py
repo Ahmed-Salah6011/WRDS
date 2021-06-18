@@ -72,19 +72,17 @@ class FaceChecker():
             img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
             encodeElon,ret= self.get_face_encodings(img)
             if ret == -1:
-                print(-1)
-                break
+#                 print(-1)
+#                 break
+                  return -1
             encs.append(encodeElon)
 
-        if ret != -1:
-            results = face_recognition.compare_faces(encs,self.ref_encodings)
-            hits= np.sum(np.array(results,dtype='int'))
-            if hits/len(self.images) >= confidence:
-                return 1
-        
-            return 0
-        else:
-            return -1
+        results = face_recognition.compare_faces(encs,self.ref_encodings)
+        hits= np.sum(np.array(results,dtype='int'))
+        if hits/len(self.images) >= confidence:
+            return 1
+
+        return 0
 
 
 
