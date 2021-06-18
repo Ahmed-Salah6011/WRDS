@@ -111,7 +111,7 @@ app.get("/video", (req, res) => {
 app.post("/show_data", (req, res) => {
   let test = check_for_id(req.body.id);
   if (test == "not found") {
-    res.send("id not found");
+    res.render("error", { error: "ID not found" });
   } else {
     res.render("show_data", { data: test });
   }

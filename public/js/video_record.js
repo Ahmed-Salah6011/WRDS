@@ -102,3 +102,6 @@ function start_timer(i) {
   };
   let counter_interval = setInterval(count, 1000);
 }
+next_step_button.addEventListener("click", () => {
+  timer_container.innerText = "Comparing your face with the face in your id";
+});
