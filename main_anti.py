@@ -50,7 +50,9 @@ elif(sys.argv[1]=="4"):
     final_res=face_comp.check_faces(images_directory='random_images/')
     if(final_res==1):
         print(1)
+        
     elif final_res == -1:
         print(-1)
+
     else:
         print(0)
