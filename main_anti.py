@@ -36,7 +36,7 @@ elif(sys.argv[1]=="2"):
 elif(sys.argv[1]=="3"):
     blink = BlinkingCounter("videos/test.MKV")
     res, frames = blink.count()
-    if(res ==1):
+    if(res >= 5 and res <=10):
         write_frames(frames,"blink","random_images/")
         print(1)
     elif res==-1:
@@ -48,7 +48,9 @@ elif(sys.argv[1]=="4"):
     ref= cv2.imread("uploads/ID_front.jpg")
     face_comp = FaceChecker(ref)
     final_res=face_comp.check_faces(images_directory='random_images/')
-    if(final_res):
+    if(final_res==1):
         print(1)
+    elif final_res == -1:
+        print(-1)
     else:
         print(0)
