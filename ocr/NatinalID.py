@@ -402,9 +402,6 @@ def IDParser_back(Name1):
     # config = '-l ara-amiri-3000 --oem 1 --psm 7'
     config = '-l ara-amiri-3000 --oem 1 --psm 11'
     Name1_Text = pytesseract.image_to_string(Name1,config=config)
-    Name1_Text = re.sub(r'[^\w]', ' ', Name1_Text)
-    Name1_Text = re.sub(r'[\u0660-\u0669]+', '', Name1_Text)
-    Name1_Text = re.sub(r'[0-9]+', '', Name1_Text)
 
     Name1_Text = Name1_Text.replace(' ', '')
     Name1_Text = " ".join(Name1_Text.split())
