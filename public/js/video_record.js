@@ -7,14 +7,14 @@ const timer_container = document.querySelector("#timer");
 const next_step_button = document.querySelector("#next-step-btn");
 
 const state1_refused =
-    "video refused, please record the video while you are smiling again",
-  state2_request = "please record a video while you are NOT smiling",
+    "Video Refused, Please Record The Video While You Are Smiling Again!",
+  state2_request = "Please Record a Video While You Are NOT Smiling",
   state2_refused =
-    "video refused, please record the video while you are NOT smiling again",
-  state3_request = "please record a video while you are blinking",
+    "video refused, Please Record The Video While You Are NOT Smiling Again!",
+  state3_request = "Please Record a Video While You Are Blinking",
   state3_refused =
-    "video refused, please record the video while you are blinking again",
-  welldone_message = "please proceed to the next step";
+    "video refused, Please Record the Video While You Are Blinking Again!",
+  welldone_message = "Please Proceed To The Next Step";
 // const recorded_video = document.querySelector("recorded_video");
 let state = 1;
 navigator.mediaDevices
@@ -60,7 +60,7 @@ navigator.mediaDevices
         }
       } else if (data == "error") {
         alert(
-          "your face must be visible during the record, only one face should be visible"
+          "your face must be visible during the Record, only one face should be visible"
         );
       } else {
         if (state == 1) {
@@ -103,5 +103,5 @@ function start_timer(i) {
   let counter_interval = setInterval(count, 1000);
 }
 next_step_button.addEventListener("click", () => {
-  timer_container.innerText = "Comparing your face with the face in your id";
+  timer_container.innerText = "Comparing Your Face With The Face In Your Id...";
 });
