@@ -90,11 +90,11 @@ app.get("/ocr", (req, res) => {
       let cert_data = JSON.parse(raw_cert);
       res.render("ocr", { cert: cert_data, id: id_data });
     } else if (dataFromPython.trim() == "0") {
-      res.render("error", { error: "face comparison failed" });
+      res.render("error", { error: "Face Comparison Failed" });
     } else if (dataFromPython.trim() == "-1") {
       res.render("error", {
         error:
-          "your face must be visible during the record, only one face should be visible",
+          "Your Face Must Be Visible During The Record, Only One Face Should Be Visible",
       });
     }
   });
@@ -116,7 +116,7 @@ app.get("/video", (req, res) => {
 app.post("/show_data", (req, res) => {
   let test = check_for_id(req.body.id);
   if (test == "not found") {
-    res.render("error", { error: "ID not found" });
+    res.render("error", { error: "ID Not Found" });
   } else {
     res.render("show_data", { data: test });
   }
