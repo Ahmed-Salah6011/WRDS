@@ -119,7 +119,7 @@ class BlinkingCounter(Antispoofing):
         class to count the number of blinks in a video
     '''
 
-    def __init__(self, video_path=None, model_path='pretrained_models/shape_predictor_68_face_landmarks.dat'):
+    def __init__(self, video_path=None, model_path='antispoofing/pretrained_models/shape_predictor_68_face_landmarks.dat'):
         super().__init__(video_path)
 
         self.model_path = model_path
@@ -212,7 +212,7 @@ class BlinkingCounter(Antispoofing):
         l = 6 if length >= 12 else length//2
         ##
         samples = random.sample(frames, l)
-        if TOTAL >= 5 and TOTAL <= 10:
+        if TOTAL >= 5 and TOTAL <= 15:
             return TOTAL, samples  # all ok
         else:
             return 0, samples  # not ok

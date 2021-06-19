@@ -6,7 +6,7 @@ import os
 
 class LandmarksDetector():
 
-    def __init__(self, dir="pretrained_models",predictor="shape_predictor_5_face_landmarks.dat"):
+    def __init__(self, dir="antispoofing/pretrained_models",predictor="shape_predictor_5_face_landmarks.dat"):
         self.predictor = os.path.join(dir,predictor)
         self.detector = dlib.shape_predictor(self.predictor)
 

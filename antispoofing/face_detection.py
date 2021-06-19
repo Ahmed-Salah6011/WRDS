@@ -9,7 +9,7 @@ class FaceDetectorSSD():
         Single Shot Detectors "SSD" based face detection
     '''
 
-    def __init__(self,dir="pretrained_models",prototxt="deploy.prototxt.txt",model="res10_300x300_ssd_iter_140000.caffemodel",probability=0.5):
+    def __init__(self,dir="antispoofing/pretrained_models",prototxt="deploy.prototxt.txt",model="res10_300x300_ssd_iter_140000.caffemodel",probability=0.5):
         self.prototxt = os.path.join(dir,prototxt)
         self.model = os.path.join(dir,model)
         self.face_detector = cv2.dnn.readNetFromCaffe(self.prototxt, self.model)

@@ -264,11 +264,11 @@ def IDCutter_back(InputImage):
     Edged_Gray = cv2.fastNlMeansDenoising(Edged_Gray,10,10,7,21) 
     Edged_Gray = cv2.filter2D(Edged_Gray, -1, Kernel_sharpen)
 
-    Name1   = Edged_Gray[100:405,100:1450]
-    _,Name1 = cv2.threshold(Name1,180,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    Name1   = Edged_Gray[120:405,0:1450]
+    _,Name1 = cv2.threshold(Name1,160,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     Name1 = cv2.filter2D(Name1, -1, Kernel_sharpen)
     Name1   = cv2.erode(Name1,Kernel_Vertical,iterations=1)
-   
+    cv2.imwrite('img.jpg',Name1)
     return Name1
 
 
@@ -396,17 +396,14 @@ def IDParser(ID,Name1,Name2,Address,ID_Code):
         DateofRetir = None
 
     return ID_Text,Name,Address_Text,ID_Code_Text,DateOfBirth,Gender,GovName,DateofRetir
-def IDParser_back(Name1,):
+def IDParser_back(Name1):
     
 
     # config = '-l ara-amiri-3000 --oem 1 --psm 7'
     config = '-l ara-amiri-3000 --oem 1 --psm 11'
     Name1_Text = pytesseract.image_to_string(Name1,config=config)
-    Name1_Text = re.sub(r'[^\w]', ' ', Name1_Text)
-    Name1_Text = re.sub(r'[\u0660-\u0669]+', '', Name1_Text)
-    Name1_Text = re.sub(r'[0-9]+', '', Name1_Text)
 
-    # Name1_Text = Name1_Text.replace(' ', '')
+    Name1_Text = Name1_Text.replace(' ', '')
     Name1_Text = " ".join(Name1_Text.split())
     #print(Name1_Text)
 
@@ -415,50 +412,62 @@ def IDParser_back(Name1,):
 def IDScanner(InputImage):
     ID,Name1,Name2,Address,ID_Code = IDCutter(InputImage)
     ID_Text,Name,Address_Text,ID_Code_Text,DateOfBirth,Gender,GovName,DateofRetir = IDParser(ID,Name1,Name2,Address,ID_Code)
-    data={
-        "ID":ID_Text,
-        "Name":Name,
-        "Address":Address_Text,
-        "Code":ID_Code_Text,
-        "DateOfBirth":DateOfBirth,
-        "Gender":Gender,
-        "Governament":GovName,
-        "DateofRetirement":DateofRetir,
-    }
-
+    if ID_Text and Name and Address_Text and ID_Code_Text and DateOfBirth and Gender and GovName and DateofRetir:
+        data={
+            "ID":ID_Text,
+            "Name":Name,
+            "Address":Address_Text,
+            "Code":ID_Code_Text,
+            "DateOfBirth":DateOfBirth,
+            "Gender":Gender,
+            "Governament":GovName,
+            "DateofRetirement":DateofRetir,
+        }
+    else:
+        data = {}
     return data
 def CERTScanner_bottom(InputImage):
     Name1 = CERTCutter_bottom(InputImage)
     status = CERTParser_bottom(Name1)
-    return {'المجموع':status[0]}
+    if status:
+        return {'المجموع':status[0]}
+    else:
+        return {}
 
 def IDScanner_back(InputImage):
     Name1 = IDCutter_back(InputImage)
     status = [word for word in IDParser_back(Name1) if word in ['انثى','ذكر','أنثى','مسلم','مسيحى','طالب','دكر']]
-    data={
+    data = ""
+    print(status)
+    if len(status) >= 3:
         
-        "Gender":status[1],
-        "Job":status[0],
-        "Religion":status[2],
-    }
+        data={
+            "Gender":status[1],
+            "Job":status[0],
+            "Religion":status[2],
+        }
+    else:
+        data = {}
 
     return data
 def CERTScanner_top(InputImage):
     Name1 = CERTCutter_top(InputImage)
     status = CERTParser_top(Name1) 
     data = {}
-    for i in range(len(status)):
-        if status[i] == 'اسم' and status[i+1] == 'الطالب':
-            data[status[i] + ' '+status[i+1]] = " ".join(status[i+2:status.index('المديرية')])
-        if status[i] == 'المديرية':
-            data[status[i]] = status[i+1]
-        if status[i] == 'المدرسة':
-            data[status[i]] = " ".join(status[i+1:])
-        if status[i] == 'اللغة' and status[i+1] == 'الأولى':
-            data[status[i] + ' ' + status[i+1]] = status[i+2]
-        if status[i] == 'اللغة' and status[i+1] == 'الثانية':
-            data[status[i] + ' ' + status[i+1]] = status[i+2]
-        if status[i] == 'الإدارة' and status[i+1] == 'التعليمية':
-            data[status[i] + ' ' + status[i+1]] = status[i+2]
-
+    if status:
+        for i in range(len(status)):
+            if status[i] == 'اسم' and status[i+1] == 'الطالب':
+                data[status[i] + ' '+status[i+1]] = " ".join(status[i+2:status.index('المديرية')])
+            if status[i] == 'المديرية':
+                data[status[i]] = status[i+1]
+            if status[i] == 'المدرسة':
+                data[status[i]] = " ".join(status[i+1:])
+            if status[i] == 'اللغة' and status[i+1] == 'الأولى':
+                data[status[i] + ' ' + status[i+1]] = status[i+2]
+            if status[i] == 'اللغة' and status[i+1] == 'الثانية':
+                data[status[i] + ' ' + status[i+1]] = status[i+2]
+            if status[i] == 'الإدارة' and status[i+1] == 'التعليمية':
+                data[status[i] + ' ' + status[i+1]] = status[i+2]
+    else:
+        data = {}
     return data

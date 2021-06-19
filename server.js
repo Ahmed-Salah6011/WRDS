@@ -47,18 +47,23 @@ const upload = multer({
   storage: storage,
   // you might also want to set some limits: https://github.com/expressjs/multer#limits
 });
-///////////////////////////////////////
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.get("/uploadfile", (req, res) => {
-  res.render("upload_photo");
-});
 var uploadMultiple = upload.fields([
   { name: "ID_front", maxCount: 10 },
   { name: "ID_back", maxCount: 10 },
   { name: "cert", maxCount: 10 },
 ]);
+///////////////////////////////////////
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.post("/uploadpage", (req, res) => {
+  if (req.body.type == "college") {
+    res.render("upload_photo");
+  } else {
+    res.render("error", { error: "Not Added Yet" });
+  }
+});
 
 app.post("/uploadfile", uploadMultiple, function (req, res, next) {
   if (req.files) {
@@ -74,7 +79,7 @@ app.post("/uploadfile", uploadMultiple, function (req, res, next) {
 });
 
 app.get("/ocr", (req, res) => {
-  const python = spawn("python", ["main_anti.py", 4]);
+  const python = spawn("python", ["antispoofing/main_anti.py", 4]);
   python.stdout.on("data", (data) => {
     dataFromPython = data.toString();
     console.log(dataFromPython);
@@ -167,7 +172,10 @@ io.on("connection", (socket) => {
           return;
         }
         console.log("video saved");
-        const python = spawn("python", ["main_anti.py", data.video_state]);
+        const python = spawn("python", [
+          "antispoofing/main_anti.py",
+          data.video_state,
+        ]);
         python.stdout.on("data", (data) => {
           dataFromPython = data.toString();
           console.log(dataFromPython);
