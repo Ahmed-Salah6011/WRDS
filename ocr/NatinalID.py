@@ -268,7 +268,7 @@ def IDCutter_back(InputImage):
     _,Name1 = cv2.threshold(Name1,160,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     Name1 = cv2.filter2D(Name1, -1, Kernel_sharpen)
     Name1   = cv2.erode(Name1,Kernel_Vertical,iterations=1)
-    cv2.imwrite('img.jpg',Name1)
+#     cv2.imwrite('img.jpg',Name1)
     return Name1
 
 

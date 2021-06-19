@@ -103,5 +103,5 @@ function start_timer(i) {
   let counter_interval = setInterval(count, 1000);
 }
 next_step_button.addEventListener("click", () => {
-  timer_container.innerText = "Comparing Your Face With The Face In Your Id...";
+  timer_container.innerText = "Comparing Your Face With The Face In Your ID...";
 });
