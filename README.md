@@ -45,7 +45,7 @@ faces with each other to make sure that the user is actually who claims he/she i
 
 ### OCR
 Allow the user to uppload the required documents for registering into his/her required system ( in our case which is applying for collage, he/she must upload the two
-faces of the National ID & high school certificate
+faces of the National ID & high school certificate )
 * You can find the basic code for detecting the national id in [NationalID.py](https://github.com/Ahmed-Salah6011/WRDS/blob/master/ocr/NatinalID.py) &
 [IDNumberParser.py](https://github.com/Ahmed-Salah6011/WRDS/blob/master/ocr/IDNumberParser.py)
 * You can find the main code of the OCR task in [ocr.py](https://github.com/Ahmed-Salah6011/WRDS/blob/master/ocr/ocr.py)
