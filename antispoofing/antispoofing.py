@@ -212,7 +212,7 @@ class BlinkingCounter(Antispoofing):
         l = 6 if length >= 12 else length//2
         ##
         samples = random.sample(frames, l)
-        if TOTAL >= 5 and TOTAL <= 10:
+        if TOTAL >= 5 and TOTAL <= 15:
             return TOTAL, samples  # all ok
         else:
             return 0, samples  # not ok
