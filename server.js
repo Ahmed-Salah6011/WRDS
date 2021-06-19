@@ -79,7 +79,7 @@ app.post("/uploadfile", uploadMultiple, function (req, res, next) {
 });
 
 app.get("/ocr", (req, res) => {
-  const python = spawn("python", ["main_anti.py", 4]);
+  const python = spawn("python", ["antispoofing/main_anti.py", 4]);
   python.stdout.on("data", (data) => {
     dataFromPython = data.toString();
     console.log(dataFromPython);
@@ -172,7 +172,10 @@ io.on("connection", (socket) => {
           return;
         }
         console.log("video saved");
-        const python = spawn("python", ["main_anti.py", data.video_state]);
+        const python = spawn("python", [
+          "antispoofing/main_anti.py",
+          data.video_state,
+        ]);
         python.stdout.on("data", (data) => {
           dataFromPython = data.toString();
           console.log(dataFromPython);

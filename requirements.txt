@@ -1,0 +1,10 @@
+opencv-python==3.4.14 
+imutils
+dlib
+numpy
+Pillow
+pylab-sdk
+autocorrect
+matplotlib
+scikit-image
+python-dateutil
