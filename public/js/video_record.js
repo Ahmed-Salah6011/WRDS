@@ -10,10 +10,10 @@ const state1_refused =
     "Video Refused, Please Record The Video While You Are Smiling Again!",
   state2_request = "Please Record a Video While You Are NOT Smiling",
   state2_refused =
-    "video refused, Please Record The Video While You Are NOT Smiling Again!",
+    "Video Refused, Please Record The Video While You Are NOT Smiling Again!",
   state3_request = "Please Record a Video While You Are Blinking",
   state3_refused =
-    "video refused, Please Record the Video While You Are Blinking Again!",
+    "Video Refused, Please Record the Video While You Are Blinking Again!",
   welldone_message = "Please Proceed To The Next Step";
 // const recorded_video = document.querySelector("recorded_video");
 let state = 1;
