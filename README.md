@@ -38,7 +38,7 @@ This Github Repo contains many directories:
 Apply different algorithms to detect the liveness and the identity of the user by:
 1. Ask the user to record a "8" second live video asking him to make a certain action and then make sure he did the asked action, the actions are
     * Smiling & Not Smiling, these actions are detected by the SmileDetection class in [antispoofing.py](https://github.com/Ahmed-Salah6011/WRDS/blob/master/antispoofing/antispoofing.py)
-    * Blinking (5 To 10 Times), this action is detected by the BlinkingCounter class in [antispoofing.py](https://github.com/Ahmed-Salah6011/WRDS/blob/master/antispoofing/antispoofing.py
+    * Blinking (5 To 10 Times), this action is detected by the BlinkingCounter class in [antispoofing.py](https://github.com/Ahmed-Salah6011/WRDS/blob/master/antispoofing/antispoofing.py)
    While checking these actions we take a random frames from the recorded videos of the user's face to compare it with his/her face in his/her ID
 2. Then after making sure that the user performed all the asked actions we take the random saved images of his/her face and take the face in his/her uploaded ID and compare the
 faces with each other to make sure that the user is actually who claims he/she is and prevent phishing and forgery
