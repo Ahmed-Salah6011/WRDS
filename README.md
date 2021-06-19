@@ -21,6 +21,8 @@ This Github Repo contains many directories:
 * [Uploads](https://github.com/Ahmed-Salah6011/WRDS/tree/master/uploads) : Contains the documents' images uploaded by the user
 * [Videos](https://github.com/Ahmed-Salah6011/WRDS/tree/master/videos) : Contains the recorded videos from the user
 
+### Demo Video Link
+You can find a demo video [here](https://www.youtube.com/watch?v=UB7Mwa1pzrM)
 
 
 ## Team Members & Their Contribution
