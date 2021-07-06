@@ -1,7 +1,7 @@
-# WIRED REGESTERATION DOCUMENTS SYSTEM (WRDS)
+# WIRED REGISTRATION DOCUMENTS SYSTEM (WRDS)
 
 ## Idea
-**Wired Regesteration Documents System (WRDS)** is a cross-platform that facilitates applying to government organizations (e.g Collages, Banks...etc) from home by simply uploading 
+**Wired Registration Documents System (WRDS)** is a cross-platform that facilitates applying to government organizations (e.g Collages, Banks...etc) from home by simply uploading 
 the required documents and then pass by Antispoofing techniques to check the person identification and liveness and then apply OCR to the documents to extract the required
 information from them.
 
